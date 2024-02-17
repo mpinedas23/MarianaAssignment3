@@ -11,6 +11,7 @@ $heading-color-hover: #35c4ce;
 $footer-color: #eaf2ff;
 $footer-txt-color: #989898;
     /* a mixin lets you make groups of CSS declarations that you want to reuse throughout your site */
+    // you call it using @include (mixin name)
     //MIXIN 1
 @mixin flex-center{
     display: flex;
@@ -21,6 +22,7 @@ $footer-txt-color: #989898;
     display: flex;
     flex-wrap: wrap;
 }
+
 
 body {
     font-family: $font-one;
