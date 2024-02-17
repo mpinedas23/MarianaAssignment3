@@ -1,16 +1,26 @@
+//VARIABLES:
 $primary-color: #111111;
 $secondary-color: #324360;
 $font-one: 'Quando', sans-serif;
 $font-two: 'Josefin Sans', sans-serif;
 $text-color: #787878;
-$link-color: #111111;
 $link-color-hover: #999999;
-$heading-color: #111111;
+$meta-color: #576b7c; 
+$border-color: #c9c9c9; 
 $heading-color-hover: #35c4ce;
-
+$footer-color: #eaf2ff;
+$footer-txt-color: #989898;
     /* a mixin lets you make groups of CSS declarations that you want to reuse throughout your site */
-
-
+    //MIXIN 1
+@mixin flex-center{
+    display: flex;
+    align-items: center;
+}
+//MIXIN 2
+@mixin flex-wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 body {
     font-family: $font-one;
@@ -28,7 +38,7 @@ p {
 a {
     font-weight: 400;
     text-decoration: none;
-    color: $link-color;
+    color: $primary-color
     // transition: .20s; CHANGE
 }
 a:hover {
@@ -76,11 +86,14 @@ h6 {
 
 
 /* header and main nav */
+// NESTING 1
 header {
     font-family: $font-two;
     nav {
+        //NESTING 2
       ul {
         display: none; // mobile
+        //NESTING 3
         @media (min-width: 650px) {
           display: flex; // desktop
         }
@@ -104,12 +117,12 @@ header {
 /* posts */
 article {
     margin-bottom: 50px;
-    display: flex;
-    /* TODO: add flex related property to let flex items be on multiple rows (1 property) DONE*/
-    flex-wrap: wrap;
+
+    @include flex-wrap;
+
 }
 .list-date {
-    font-family: Quando;
+    font-family: $font-one;
     overflow: hidden;
     width: 20px;
     font-size: 12px;
@@ -127,25 +140,23 @@ article {
     margin-left: 20px;
 }
 .post-meta {
-    display: flex;
-    align-items: center;
+    @include flex-center;
 }
 .post-author {
-    display: flex;
-    align-items: center;
+    @include flex-center;
 }
 .author-avatar {
+    //NESTING 4
     width: 30px;
     height: 30px;
     margin-right: 8px;
-}
-.author-avatar img {
-    /* TODO: make the image round (1 property) DONE */
-    border-radius: 50%;
-}
+    img {
+      border-radius: 50%;
+    }
+  }
 .content-part .post-meta a {
     margin-left: 5px;
-    color: #576b7c;
+    color: $meta-color;
 }
 ul.post-meta li:not(:last-child)::after {
     display: inline-block;
@@ -156,12 +167,12 @@ ul.post-meta li:not(:last-child)::after {
     height: 3px;
     margin-right: 13px;
     border-radius: 100px;
-    background: #576b7c;
+    background: $meta-color;
     content: '';
 }
 
 .post-title a {
-    color: #324360;
+    color: $secondary-color;
     text-transform: uppercase;
     font-size: 26px;
     font-weight: 900;
@@ -172,27 +183,26 @@ ul.post-meta li:not(:last-child)::after {
     transition: all 0.3s ease;
 }
 .post-title a:hover {
-    color: #35c4ce;
+    color: $heading-color-hover;
 
 }
 
 .post-readmore a {
-    border-bottom: 1px solid #c9c9c9;
-    color: #324360;
+    border-bottom: 1px solid $border-color;
+    color: $secondary-color;
     padding: 5px 0;
     font-size: 13px;
     text-transform: uppercase;
-}
-.post-readmore a:hover {
-    color: #999999;
-}
+    &:hover {
+        //nesting 5
+    color: $link-color-hover;
+}}
 
 
 
 /* footer */
 #instagram-footer {
-    display: flex;
-    flex-wrap: wrap;
+    @include flex-wrap;
 }
 #instagram-footer div {
     /* TODO: display 3 images in a row and take up all the space (1 property) DONE */
@@ -205,17 +215,18 @@ ul.post-meta li:not(:last-child)::after {
 }
 
 footer {
+    //footer > a 
     padding: 30px 0;
     text-align: center;
-    background: #eaf2ff;
-    color: #989898;
-}
-#footer a {
-    color: #989898;
-}
-#footer a:hover {
-    color: #111111;
-}
+    background: $footer-color;
+    color: $footer-txt-color;
+    //NESTING 6
+    a {
+    color: $footer-txt-color;
+    //NESTING 7
+    &:hover {
+    color: $primary-color;
+}}}
 .footer-logo {
     width: 200px;
     margin: 20px auto;
@@ -223,19 +234,20 @@ footer {
     vertical-align: middle;
 }
 .footer-social-links {
+    //social llinks > a > span
     padding: 20px 0;
     line-height: 2em;
-}
-.footer-social-links a {
-    margin: 0 10px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-.footer-social-links a span {
-    /* TODO: do not show social platform names on mobile (1 property) DONE */
-    display: block;
-}
+    //NESTING 8
+    a {
+        margin: 0 10px;
+        font-size: 16px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        //NESTING 9
+        span {
+        /* TODO: do not show social platform names on mobile (1 property) DONE */
+        display: block;
+}}}
 @media(max-width:650px){
     .footer-social-links a span {
         /* TODO: do not show social platform names on mobile (1 property) DONE */
@@ -245,7 +257,7 @@ footer {
 #footer-copyright {
     padding: 20px 0;
     font-size: 12px;
-    color: #989898;
+    color: $footer-txt-color;
 }
 
 
@@ -264,37 +276,36 @@ footer {
         height: 60px;
         align-items: center;
         justify-content: center;
+        //NESTING 10
+        ul {
+            /* TODO: make desktop main nav a flex container (1 property) DONE*/
+            display: flex;
     }
-    header nav ul {
-        /* TODO: make desktop main nav a flex container (1 property) DONE*/
-        display: flex;
-    }
-    header nav li {
-        margin: 0 15px;
-        /* TODO: use "position" property to let these elements stay in normal position but anchor the sub nav (1 property)DONE */
-        line-height: 24px;
-        position: relative;
-    }
-    header nav a {
-        font-family: 'Josefin Sans', sans-serif;
-        color: #324360;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-        font-size: 12px;
-        font-weight: 900;
-    }
-    header nav a:hover {
-        color: #35c4ce;
-    }
+        li {
+                margin: 0 15px;
+                /* TODO: use "position" property to let these elements stay in normal position but anchor the sub nav (1 property)DONE */
+                line-height: 24px;
+                position: relative;
+            }
+        a {
+            font-family: $font-two;
+            color: $secondary-color;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: 900;
+    &:hover {
+        color: $heading-color-hover;
+    }}}
     header nav li.menu-item-has-children > a::after {
         margin-left: 7px;
         font-family: 'FontAwesome';
         font-size: 13px;
-        color: #324360;
+        color: $secondary-color;
         content: '\f078';
     }
     .current-menu-item a {
-        border-bottom: 2px solid #324360;
+        border-bottom: 2px solid $secondary-color;
     }
     /* sub nav */
     /* TODO: target sub navs in header (1 selector) DONE */
@@ -320,7 +331,7 @@ footer {
     }
     header nav ul ul a {
         display: block;
-        color: #111111;
+        color: $primary-color;
         min-width: 175px;
         margin: 0;
         padding: 20px 10px;
@@ -344,7 +355,7 @@ footer {
         margin-top: 40px;
     }
     .sticky-social a {
-        color: #324360;
+        color: $secondary-color;
         display: block;
         width: 100%;
         padding: 20% 40%;

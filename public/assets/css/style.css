@@ -97,12 +97,11 @@ header nav ul {
 article {
   margin-bottom: 50px;
   display: flex;
-  /* TODO: add flex related property to let flex items be on multiple rows (1 property) DONE*/
   flex-wrap: wrap;
 }
 
 .list-date {
-  font-family: Quando;
+  font-family: "Quando", sans-serif;
   overflow: hidden;
   width: 20px;
   font-size: 12px;
@@ -138,9 +137,7 @@ article {
   height: 30px;
   margin-right: 8px;
 }
-
 .author-avatar img {
-  /* TODO: make the image round (1 property) DONE */
   border-radius: 50%;
 }
 
@@ -185,7 +182,6 @@ ul.post-meta li:not(:last-child)::after {
   font-size: 13px;
   text-transform: uppercase;
 }
-
 .post-readmore a:hover {
   color: #999999;
 }
@@ -212,12 +208,10 @@ footer {
   background: #eaf2ff;
   color: #989898;
 }
-
-#footer a {
+footer a {
   color: #989898;
 }
-
-#footer a:hover {
+footer a:hover {
   color: #111111;
 }
 
@@ -232,14 +226,12 @@ footer {
   padding: 20px 0;
   line-height: 2em;
 }
-
 .footer-social-links a {
   margin: 0 10px;
   font-size: 16px;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
-
 .footer-social-links a span {
   /* TODO: do not show social platform names on mobile (1 property) DONE */
   display: block;
